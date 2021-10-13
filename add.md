@@ -16,6 +16,7 @@ It's worth noting that there is no way to modify the parameters once you've issu
 You've accomplished [Run an Avalanche Node](../../get-started.md) and are acquainted with [Avalanche's architecture](../../../learn/platform-overview/). In this tutorial, we'll utilize [Avalanche’s Postman collection](https://github.com/ava-labs/avalanche-postman-collection) to assist us make API calls.
 
 Make sure your node can receive and send TCP traffic on the staking port \(`9651` by default\) and that you initiated the node with the command line parameter `--public-ip=[YOUR NODE'S PUBLIC IP HERE]` to ensure your node is well-connected. If you fail to do either of these, your staking reward could be jeopardized.
+
 ## Create a Avalanche Wallet
  Make a [Avalanche Wallet] by clicking on this link (https://wallet.avax.network).
  ![Create a Avalanche Wallet](../../../.gitbook/assets/create-new-wallet.png).
@@ -25,7 +26,7 @@ Make sure your node can receive and send TCP traffic on the staking port \(`9651
 
 ## Add a validator with Avalanche Wallet
 
-First, we show you how to add your node as a validator by using [Avalanche Wallet](https://wallet.avax.network).
+First, We've demostrated how to add your node as a validator by using [Avalanche Wallet](https://wallet.avax.network).
 
 Get your node’s ID by calling [`info.getNodeID`](https://avalanche.gitbook.io/avalanche/build/apis/info-api#info-getnodeid):
 
@@ -39,7 +40,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
 ```
 
-The response has your node’s ID:
+The response would've your node’s ID:
 
 ```cpp
 {
@@ -51,10 +52,10 @@ The response has your node’s ID:
 }
 ```
 
-Open [the Avalanche wallet](https://wallet.avax.network/), and go the `Earn` tab. Choose `Add Validator`.
+Open [the Avalanche wallet](https://wallet.avax.network/), and go to the `Earn` tab. Choose `Add Validator`.
 ![Web wallet earn tab](../../../.gitbook/assets/ava-earn-wallet.png).
 
-To enable Validator , click on this network option.
+Select this network option to enable Validator.
 ![wallet.ava-change-network-to-fuji](../../../.gitbook/assets/wallet.ava-change-network-to-fuji.png).
 
 Select the Fuji option instead of Mainnet.
@@ -66,22 +67,22 @@ For adding the coin in the Wallet, Click on this Link (https://faucet.avax-test.
 ![avax-request-fund](../../../.gitbook/assets/avax-request-fund.png).
 Add your wallet Address, and verify recapcha and hit on Request AVAX.
 
-Now you have to convert your coin 'X-Chain' to 'P-Chain', by clicking on the Cross Chain Tab.
+Now you have to convert your coin `X-Chain` to `P-Chain`, by clicking on the Cross Chain Tab.
 ![convert-x2p chain-ava-wallet](../../../.gitbook/assets/convert-x2p chain-ava-wallet.png).
-Put the Amount and hit 'conform'.
+Put the Amount and hit 'confirm'.
  
 
-Fill out the staking parameters. They are explained in more detail below. When you’ve filled in all the staking parameters and double-checked them, click `Confirm`. Make sure the staking period is at least 2 weeks, the delegation fee rate is at least 2%, and you’re staking at least 2,000 AVAX.
+Complete the staking parameters. We've discussed in greater depth further down. After you've double-checked all of the staking parameters, click `Confirm` Make sure your staking term is at least two weeks long, the delegation fee rate is at least 2%, and you're staking at least 2,000 AVAX.
 
 {% page-ref page="../../../learn/platform-overview/staking.md" %}
 
 ![Earn validate](../../../.gitbook/assets/earn-validate.png)
 
-You should see this success message, and your balance should be updated.
+This success notice should appear, along with an update to your balance.
 
 ![Your validation transaction is sent](../../../.gitbook/assets/your-validation-transaction-is-sent.png)
 
-Calling [`platform.getPendingValidators`](https://avalanche.gitbook.io/avalanche/build/apis/platform-chain-p-chain-api#platform-getpendingvalidators) verifies that our transaction was accepted.
+Calling [`platform.getPendingValidators`](https://avalanche.gitbook.io/avalanche/build/apis/platform-chain-p-chain-api#platform-getpendingvalidators) confirms that your transaction was successfully accepted.
 
 ![getPendingValidators postman](../../../.gitbook/assets/getPendingValidators-postman.png)
 
@@ -89,7 +90,7 @@ Go back to the `Earn` tab, and click `Estimated Rewards`.
 
 ![Earn, validate, delegate](../../../.gitbook/assets/earn-validate-delegate.png)
 
-Once your validator’s start time has passed, you will see the rewards it may earn, as well as its start time, end time, and the percentage of its validation period that has passed.
+Once its start time has passed, you'll see the rewards your validator may have earned, as well as its start time, end time, and the percentage of its validation period that has elapsed.
 
 ![Estimated rewards](../../../.gitbook/assets/estimated-rewards.png)
 
@@ -97,7 +98,7 @@ That’s it!
 
 ## Add a validator with API calls
 
-We can also add a node to the validator set by making API calls to our node. To add a node the Primary Network, we’ll call [`platform.addValidator`](https://avalanche.gitbook.io/avalanche/build/apis/platform-chain-p-chain-api#platform-addvalidator).
+By making API calls to our node, we can also add a node to the validator set. To add a node the Primary Network, we’ll call [`platform.addValidator`](https://avalanche.gitbook.io/avalanche/build/apis/platform-chain-p-chain-api#platform-addvalidator).
 
 This method’s signature is:
 
@@ -121,7 +122,7 @@ Let’s go through and examine these arguments.
 
 `nodeID`
 
-This is the node ID of the validator being added. To get your node’s ID, call [`info.getNodeID`](https://avalanche.gitbook.io/avalanche/build/apis/info-api#info-getnodeid):
+This is the node ID of the validator being added. To obtain your node’s ID, call [`info.getNodeID`](https://avalanche.gitbook.io/avalanche/build/apis/info-api#info-getnodeid):
 
 ```cpp
 curl -X POST --data '{
@@ -146,31 +147,29 @@ The response has your node’s ID:
 
 `startTime` and `endTime`
 
-When one issues a transaction to join the Primary Network they specify the time they will enter \(start validating\) and leave \(stop validating.\) The minimum duration that one can validate the Primary Network is 24 hours, and the maximum duration is one year. One can re-enter the Primary Network after leaving, it’s just that the maximum _continuous_ duration is one year. `startTime` and `endTime` are the Unix times when your validator will start and stop validating the Primary Network, respectively. `startTime` must be in the future relative to the time the transaction is issued.
+When someone initiates a transaction to join the Primary Network, they must mention the time they want to enter. \(start validating\) and leave \(stop validating.\) The Primary Network can be validated for a minimum of 24 hours and a maximum of one year. After leaving the Primary Network, one can rejoin however, the maximum _continuous_ period is one year. The Unix times when your validator will start and stop validating the Primary Network are `startTime` and `endTime` respectively. In relation to the time the transaction is issued,`startTime` must be in the future.
 
 `stakeAmount`
 
-In order to validate the Primary Network, one must stake AVAX. This parameter defines the amount of AVAX staked.
-
+Staking AVAX is required to validate the Primary Network. The quantity of AVAX staked is defined by this parameter.
 `rewardAddress`
 
-When a validator stops validating the Primary Network, they will receive a reward if they are sufficiently responsive and correct while they validated the Primary Network. These tokens are sent to `rewardAddress`. The original stake will be sent back to an address controlled by `username`.
+When a validator stops validating the Primary Network, they will receive a reward if they are sufficiently responsive and correct while they validated the Primary Network. These tokens are sent to `rewardAddress`. The original stake will be returned to a 'username' controlled address.
 
-A validator’s stake is never slashed, regardless of their behavior; they will always receive their stake back when they’re done validating.
-
+The stake of a validator is never slashed, regardless of their actions; they always get their stake back when they're finished verifying.
 `changeAddr`
 
-Any change resulting from this transaction will be sent to this address. You can leave this field empty; if you do, change will be sent to one of the addresses your user controls.
+This address will receive any changes resulting from this transaction. You can leave this field blank; if you do, money will be sent to one of your user's addresses.
 
 `delegationFeeRate`
 
-Avalanche allows for delegation of stake. This parameter is the percent fee this validator charges when others delegate stake to them. For example, if `delegationFeeRate` is `1.2345` and someone delegates to this validator, then when the delegation period is over, 1.2345% of the reward goes to the validator and the rest goes to the delegator.
+Stake delegation is possible with Avalanche. When others delegate stake to this validator, this parameter is the percentage fee they charge. For example, if the `delegationFeeRate` is `1.2345` and someone delegates to this validator, then 1.2345 percent of the reward goes to the validator and the remainder goes to the delegator when the delegation period ends.
 
 `username` and `password`
 
-These parameters are the username and password of the user that pays the transaction fee, provides the staked AVAX, and to whom the staked AVAX will be returned.
+These are the username and password of the user who pays the transaction fee, provides the staked AVAX, and gets the staked AVAX returned.
 
-Now let’s issue the transaction. We use the shell command `date` to compute the Unix time 10 minutes and 30 days in the future to use as the values of `startTime` and `endTime`, respectively. \(Note: If you’re on a Mac, replace `$(date` with `$(gdate`. If you don’t have `gdate` installed, do `brew install coreutils`.\) In this example we stake 2,000 AVAX \(2 x 1012 nAVAX\).
+Now it's time to issue the transaction. For the values of `startTime` and `endTime` we utilise the shell command `date` to compute the Unix time 10 minutes and 30 days in the future, respectively. \(Note: If you’re on a Mac, replace `$(date` with `$(gdate`. If you don’t have `gdate` installed, do `brew install coreutils`.\) In this example we stake 2,000 AVAX \(2 x 1012 nAVAX\).
 
 ```cpp
 curl -X POST --data '{
@@ -191,7 +190,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/P
 ```
 
-The response has the transaction ID, as well as the address the change went to.
+The transaction ID is included in the response, as well as the address where the change went to. 
 
 ```cpp
 {
@@ -204,7 +203,7 @@ The response has the transaction ID, as well as the address the change went to.
 }
 ```
 
-We can check the transaction’s status by calling [`platform.getTxStatus`](https://avalanche.gitbook.io/avalanche/build/apis/platform-chain-p-chain-api#platform-gettxstatus):
+We can verify the status of the transaction by calling [`platform.getTxStatus`](https://avalanche.gitbook.io/avalanche/build/apis/platform-chain-p-chain-api#platform-gettxstatus):
 
 ```cpp
 curl -X POST --data '{
@@ -217,7 +216,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/P
 ```
 
-The status should be `Committed`, meaning the transaction was successful. We can call [`platform.getPendingValidators`](https://avalanche.gitbook.io/avalanche/build/apis/platform-chain-p-chain-api#platform-getpendingvalidators) and see that the node is now in the pending validator set for the Primary Network:
+The status should be `Committed`, which indicates that the transaction was completed successfully. We can call [`platform.getPendingValidators`](https://avalanche.gitbook.io/avalanche/build/apis/platform-chain-p-chain-api#platform-getpendingvalidators) and see that the node is now in the pending validator set for the Primary Network:
 
 ```cpp
 curl -X POST --data '{
@@ -247,7 +246,7 @@ The response should include the node we just added:
 }
 ```
 
-When the time reaches `1584021450`, this node will start validating the Primary Network. When it reaches `1584121156`, this node will stop validating the Primary Network. The staked AVAX will be returned to an address controlled by `username`, and the rewards, if any, will be given to `rewardAddress`.
+This node will commence validating the Primary Network when the time reaches `1584021450`. This node will stop validating the Primary Network when it reaches `1584121156`. The staked AVAX will be returned to an address controlled by `username` and any rewards will be sent to `rewardAddress` if there are any.
 
 ## Adding a Subnet Validator
 
