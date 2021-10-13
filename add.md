@@ -13,10 +13,9 @@ It's worth noting that there is no way to modify the parameters once you've issu
 
 ## Requirements
 
-You've completed [Run an Avalanche Node](../../get-started.md) and are familiar with [Avalanche's architecture](../../../learn/platform-overview/). In this tutorial, we use [Avalanche’s Postman collection](https://github.com/ava-labs/avalanche-postman-collection) to help us make API calls.
+You've accomplished [Run an Avalanche Node](../../get-started.md) and are acquainted with [Avalanche's architecture](../../../learn/platform-overview/). In this tutorial, we'll utilize [Avalanche’s Postman collection](https://github.com/ava-labs/avalanche-postman-collection) to assist us make API calls.
 
-In order to ensure your node is well-connected, make sure that your node can receive and send TCP traffic on the staking port \(`9651` by default\) and that you started your node with command line argument `--public-ip=[YOUR NODE'S PUBLIC IP HERE]`. Failing to do either of these may jeopardize your staking reward.
-
+Make sure your node can receive and send TCP traffic on the staking port \(`9651` by default\) and that you initiated the node with the command line parameter `--public-ip=[YOUR NODE'S PUBLIC IP HERE]` to ensure your node is well-connected. If you fail to do either of these, your staking reward could be jeopardized.
 ## Create a Avalanche Wallet
  Make a [Avalanche Wallet] by clicking on this link (https://wallet.avax.network).
  ![Create a Avalanche Wallet](../../../.gitbook/assets/create-new-wallet.png).
