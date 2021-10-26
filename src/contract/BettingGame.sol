@@ -1,15 +1,15 @@
 /** Contract created based on: https://docs.chain.link/docs/get-a-random-number
  *  Contract created only for educational purposes, by: github.com/dappuniversity
- *  You will need testnet MATIC and LINK.
+ *  You will need testnet ETH and LINK.
  *     - Rinkeby ETH faucet: https://faucet.rinkeby.io/
  *     - Rinkeby LINK faucet: https://rinkeby.chain.link/
  */
 
 /** !UPDATE
- * min. bet >= $1 in Matcic
+ * min. bet >= $1 in Ethereum
  * 
- * MATIC/USD price will be received from Chainlink Oracles prices feed aggregator.
- * more: https://docs.chain.link/docs/matic-addresses.
+ * ETH/USD price will be received from Chainlink Oracles prices feed aggregator.
+ * more: https://docs.chain.link/docs/using-chainlink-reference-contracts.
  */
 pragma solidity 0.6.6;
 
@@ -22,13 +22,13 @@ contract BettingGame is VRFConsumerBase {
    * 
    * assign an aggregator contract to the variable.
    */
-  AggregatorV3Interface internal MaticUsd; 
+  AggregatorV3Interface internal ethUsd; 
     
   uint256 internal fee;
   uint256 public randomResult;
   
   //Network: Rinkeby
-  address constant VFRC_address = 0x3d2341ADb2D31f1c5530cDC622016af293177AE0; // VRF Coordinator
+  address constant VFRC_address = 0xb3dCcb4Cf7a26f6cf6B120Cf5A73875B7BBc655B; // VRF Coordinator
   address constant LINK_address = 0x01BE23585060835E02B77ef475b0Cc51aA1e0709; // LINK token
   
   //declaring 50% chance, (0.5*(uint256+1))
@@ -73,11 +73,11 @@ contract BettingGame is VRFConsumerBase {
     
     /** !UPDATE
      * 
-     * assign MATIC/USD Rinkeby contract address to the aggregator variable.
+     * assign ETH/USD Rinkeby contract address to the aggregator variable.
      * more: https://docs.chain.link/docs/ethereum-addresses
      */
      
-    MaticUsd = AggregatorV3Interface(0x8A753747A1Fa494EC906cE90E9f37563A8AF630e);
+    ethUsd = AggregatorV3Interface(0x8A753747A1Fa494EC906cE90E9f37563A8AF630e);
   }
   
   /* Allows this contract to receive payments */
@@ -88,10 +88,10 @@ contract BettingGame is VRFConsumerBase {
 
   /** !UPDATE
    * 
-   * Returns latest MATIC/USD price from Chainlink oracles.
+   * Returns latest ETH/USD price from Chainlink oracles.
    */
-  function MaticInUsd() public view returns (int) {
-    (uint80 roundId, int price, uint startedAt, uint timeStamp, uint80 answeredInRound) = MaticUsd.latestRoundData();
+  function ethInUsd() public view returns (int) {
+    (uint80 roundId, int price, uint startedAt, uint timeStamp, uint80 answeredInRound) = ethUsd.latestRoundData();
     
     return price;
   }
@@ -189,7 +189,7 @@ contract BettingGame is VRFConsumerBase {
   }
   
   /**
-   * Withdraw Matic from this contract (admin option).
+   * Withdraw Ether from this contract (admin option).
    */
   function withdrawEther(uint256 amount) external payable onlyAdmin {
     require(address(this).balance>=amount, 'Error, contract has insufficent balance');
