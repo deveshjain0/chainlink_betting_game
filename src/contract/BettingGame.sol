@@ -88,10 +88,10 @@ contract BettingGame is VRFConsumerBase {
 
   /** !UPDATE
    * 
-   * Returns latest ETH/USD price from Chainlink oracles.
+   * Returns latest MATIC/USD price from Chainlink oracles.
    */
-  function ethInUsd() public view returns (int) {
-    (uint80 roundId, int price, uint startedAt, uint timeStamp, uint80 answeredInRound) = ethUsd.latestRoundData();
+  function MaticInUsd() public view returns (int) {
+    (uint80 roundId, int price, uint startedAt, uint timeStamp, uint80 answeredInRound) = MaticUsd.latestRoundData();
     
     return price;
   }
