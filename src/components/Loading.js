@@ -35,7 +35,7 @@ class Loading extends Component {
                         />
                         <div className="input-group-append">
                           <div className="input-group-text">
-                            <img src={eth} height="20" alt=""/>&nbsp;<b>ETH</b>
+                            <img src={eth} height="20" alt=""/>&nbsp;<b>MATIC</b>
                           </div>
                         </div>
                     </div>
@@ -62,21 +62,21 @@ class Loading extends Component {
                           <b>MaxBet&nbsp;</b>
                         </div>
                         <div className="float-right" style={{ height: '17px' }}>
-                          {Number(this.props.web3.utils.fromWei((this.props.maxBet).toString())).toFixed(5)} <b>ETH&nbsp;</b>
+                          {Number(this.props.web3.utils.fromWei((this.props.maxBet).toString())).toFixed(5)} <b>MATIC&nbsp;</b>
                         </div>                      
                         <br></br>
                         <div className="float-left" style={{ height: '17px' }}>
                           <b>MinBet</b>($1)&nbsp;
                         </div>
                         <div className="float-right" style={{ height: '17px' }}>
-                          {Number(this.props.web3.utils.fromWei((this.props.minBet).toString())).toFixed(5)} <b>ETH&nbsp;</b>
+                          {Number(this.props.web3.utils.fromWei((this.props.minBet).toString())).toFixed(5)} <b>MATIC&nbsp;</b>
                         </div>
                         <br></br>
                         <div className="float-left">
                           <b>Balance&nbsp;</b>
                         </div>
                         <div className="float-right">
-                          {Number(this.props.web3.utils.fromWei((this.props.balance).toString())).toFixed(5)} <b>ETH&nbsp;</b>
+                          {Number(this.props.web3.utils.fromWei((this.props.balance).toString())).toFixed(5)} <b>MATIC&nbsp;</b>
                         </div>
                       </div>
                     }
